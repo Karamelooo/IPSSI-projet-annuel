@@ -34,6 +34,7 @@ body {
 
 header#main-header {
 	display:flex;
+	position:fixed;
 	justify-content:space-between;
 	align-items:center;
 	box-sizing:border-box;
@@ -51,7 +52,7 @@ header a.title {
 }
 
 header nav#nav-profile {
-	position:absolute;
+	position:fixed;
 	display:flex;
 	justify-content:center;
 	align-items: center;
