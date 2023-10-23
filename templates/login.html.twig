@@ -1,83 +1,21 @@
 {# templates/login.html.twig #}
 {% extends 'base.html.twig' %}
 
-{# Titre de la page #}
 {% block title %}Mon titre{% endblock %}
 
-{# Ici vous mettez vos codes HTML et balises Twig au besoin #}
 {% block body %}
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
-    <h1>Mon super titre H1</h1>
-    <p>Un paragraphe contenant pleins de mots à lire</p>
+
+<section class="card" id="login-section">
+	<h1>Connexion</h1>
+	<form>
+		<label for="login">Adresse</label>
+		<input type="text" id="login" name="login">
+		<label for="password">Mot de passe</label>
+		<input type="password" id="password" name="password">
+		<a href="#">Mot de passe oublié ?</a>
+		<input type="submit" value="Se connecter">
+		<span>Pas de compte ? <a href="#">S'inscrire</a></span>
+	</form>
+</section>
+
 {% endblock %}

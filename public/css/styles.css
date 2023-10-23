@@ -20,6 +20,22 @@ h1,h2,h3,h4,h5,h6,.title {
 	font-family:"Nunito";
 }
 
+h1 {
+	font-size:4rem;
+	font-weight:900;
+	color:#4245F5;
+}
+
+h2 {
+	font-size:3.2rem;
+	font-weight:400;
+}
+
+h3 {
+	font-size:2.4rem;
+	font-weight:600;
+}
+
 html
 {
 	font-size:62.5%;
@@ -30,6 +46,10 @@ html
 
 body {
 	font-size:1.6rem;
+}
+
+main {
+	padding-top:12rem;
 }
 
 header#main-header {
@@ -99,4 +119,23 @@ header nav#nav-profile {
 
 .show-input {
 	display:none;
+}
+
+.card {
+	display:flex;
+	margin:2rem;
+	padding:1rem;
+	padding-right: 0px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	border-radius: 20px;
+	background: var(--all-colors-project-claire, #F3F1FF);
+	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #A5A6F6;
+}
+
+section#login-section form {
+	display:flex;
+	flex-direction: column;
 }
