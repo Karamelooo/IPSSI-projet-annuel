@@ -1,11 +1,15 @@
 {# templates/components/header.html.twig #}
 	<header id="main-header">
-		<a href="index.php">MyDrive</a>
+		<a href="index.php" class="title">MyDrive</a>
 		<div id="container-icon-profile">
-			<img id="icon-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
-		</div>
-		<span>John Doe</span>
+			<input type="checkbox" id="show-menu" class="show-input">
+			<label id="label-show-menu" for="show-menu">
+				<div id="background-icon-profile">
+					<img id="icon-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
+				</div>
+			</label>
 			<nav id="nav-profile">
+				<a href="account.php" id="header-profile-name"><span>John Doe</span></a>
 				<ul>
 					<li>
 						<a href="account.php">Mon compte</a>
@@ -15,4 +19,5 @@
 					</li>
 				</ul>
 			</nav>
+		</div>
 	</header>
