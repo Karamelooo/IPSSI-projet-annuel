@@ -152,3 +152,25 @@ input {
 input:focus {
 	border:2px solid #4245F5;
 }
+
+input[type="submit"], button {
+	border-radius:1rem;
+	font-weight:bold;
+	background:#4245F5;
+	transition:background 0.2s;
+	color:white;
+	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
+}
+
+input[type="submit"]:hover, button:hover {
+	background: white;
+	color:black;
+	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+	transition:background 0.2s;
+
+}
+
+input[type="submit"]:active, button:active {
+	background: linear-gradient(109deg, #D7D4ED 0%, #FFFDFF 139.37%);
+	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+}
