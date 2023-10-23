@@ -1,7 +1,9 @@
 {# templates/components/header.html.twig #}
 	<header id="main-header">
 		<a href="index.php">MyDrive</a>
-		<img id="icon-profile" alt="Photo de profil de l'utilisateur">
+		<div id="container-icon-profile">
+			<img id="icon-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
+		</div>
 		<span>John Doe</span>
 			<nav id="nav-profile">
 				<ul>

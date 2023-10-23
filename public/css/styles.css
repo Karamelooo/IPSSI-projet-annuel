@@ -1,10 +1,27 @@
+@import url('fonts.css');
+
 * {
 	padding:0;
 	margin:0;
+	font-family:'Nunito';
+}
+
+h1,h2,h3,h4,h5,h6 {
 }
 
 header#main-header {
-	display:block;
+	display:flex;
 	width:100%;
 	background-color:#F3F1FF;
+}
+
+#container-icon-profile {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:62px;
+	height:62px;
+	border-radius:90px;
+	background-color:#4245F5;
+	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
 }
