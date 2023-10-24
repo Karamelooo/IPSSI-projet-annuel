@@ -7,6 +7,9 @@
 
 <section class="card">
 	<h1>Informations personnelles</h1>
+	<div class="background-image-profile">
+		<img id="image-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
+	</div>
 	<form>
 		<label for="firstname">Prénom</label>
 		<input type="text" id="firstname" name="firstname">
@@ -28,6 +31,15 @@
 		<input type="text" id="siret" name="siret">
 		<button>Modifier</button>
 	</form>
+</section>
+<section class="card">
+	<h2>Mon stockage</h2>
+	<progress id="stockage-value" max="100" value="10">10%</progress>
+	<span>2Go utilisés sur 20Go</span>
+	<div class="flex-row">
+		<button>Acheter</button>
+		<button>Voir mes fichiers</button>
+	</div>
 </section>
 
 {% endblock %}

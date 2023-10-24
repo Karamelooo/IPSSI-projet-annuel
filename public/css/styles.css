@@ -93,10 +93,7 @@ header nav#nav-profile {
 	transition:top 0.2s ease-in-out;
 }
 
-#container-icon-profile {
-}
-
-#background-icon-profile {
+#background-icon-profile, .background-image-profile {
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -105,6 +102,15 @@ header nav#nav-profile {
 	border-radius:9rem;
 	background-color:#4245F5;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
+}
+
+.background-image-profile {
+	width:18rem;
+	height:18rem;
+}
+
+.background-image-profile img {
+	width:17rem;
 }
 
 #header-profile-name {
