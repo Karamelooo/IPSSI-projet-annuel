@@ -171,6 +171,10 @@ input:focus {
 	border:2px solid #4245F5;
 }
 
+form input[type="submit"] {
+	margin:auto;
+}
+
 input[type="submit"], button {
 	border-radius:1rem;
 	font-weight:bold;
@@ -178,6 +182,7 @@ input[type="submit"], button {
 	transition:background 0.2s;
 	color:white;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
+	width:auto;
 }
 
 input[type="submit"]:hover, button:hover {
