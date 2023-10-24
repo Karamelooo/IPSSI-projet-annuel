@@ -203,3 +203,19 @@ input[type="submit"]:active, button:active {
 	display:flex;
 	justify-content:space-between;
 }
+
+#plan-price {
+	display:block;
+	padding:1rem 4rem;
+	margin:3rem;
+	border-radius: 76px;
+	background-color: #A5A6F6;
+	color:white;
+	font-size:4rem;
+	text-align:center;
+}
+
+p {
+	white-space:pre-line;	
+	margin:1rem;
+}

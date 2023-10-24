@@ -1,0 +1,24 @@
+{# templates/subscribe.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<section class="card" id="login-section">
+	<h1>Inscription</h1>
+	<form id="form-subscribe">
+		<label for="address-user">Adresse postale personnelle</label>
+		<input type="text" id="address-user" name="address-user">
+		<label for="address-entreprise">Adresse postale entreprise</label>
+		<input type="text" id="address-entreprise" name="address-entreprise">
+		<label for="siret">SIRET</label>
+		<input type="text" id="siret" name="siret">
+		<div class="flex-row">
+			<span>Étape 2</span>
+			<button>Suivant</button>
+		</div>
+	</form>
+</section>
+
+{% endblock %}
