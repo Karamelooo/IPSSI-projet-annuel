@@ -3,6 +3,6 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-login:
+app_login:
     path: /login
-    controller: App\Controller\loginController::login
+    controller: App\Controller\SecurityController::login

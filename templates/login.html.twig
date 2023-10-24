@@ -7,15 +7,17 @@
 
 <section class="card" id="login-section">
 	<h1>Connexion</h1>
-	<form>
-		<label for="email">Adresse</label>
-		<input type="text" id="email" name="email">
-		<label for="password">Mot de passe</label>
-		<input type="password" id="password" name="password">
-		<a href="#">Mot de passe oublié ?</a>
-		<input type="submit" value="Se connecter">
-		<span>Pas de compte ? <a href="#">S'inscrire</a></span>
-	</form>
+	<form method="post" action="{{ path('app_login') }}">
+   		{{ form_start(form) }}
+			<label for="{{ form.email.vars.id }}">Adresse</label>
+		{{ form_widget(form.email) }}
+			<label for="{{ form.password.vars.id }}">Mot de passe</label>
+		{{ form_widget(form.password) }}
+			<a href="#">Mot de passe oublié ?</a>
+			<input type="submit" value="Se connecter">
+			<span>Pas de compte ? <a href="#">S'inscrire</a></span>
+		{{ form_end(form) }}
+    </form>
 </section>
 
 {% endblock %}
