@@ -153,16 +153,12 @@ form {
 	margin:5rem 0;
 }
 
-#form-login input[type="submit"] {
-	margin-top:2rem;
-}
-
 input {
 	box-shadow: 0px 14px 21px 0px rgba(165, 166, 246, 0.20);
 	border-radius: 10px;
 	background: #FAF9FF;
 	border:none;
-	margin:0 2rem 0 1rem;
+	margin:0 2rem 1rem 1rem;
 	padding:0.5rem 2rem;
 	outline:none;
 }
@@ -173,6 +169,7 @@ input:focus {
 
 form input[type="submit"] {
 	margin:auto;
+	margin-top:2rem;
 }
 
 input[type="submit"], button {
@@ -181,8 +178,12 @@ input[type="submit"], button {
 	background:#4245F5;
 	transition:background 0.2s;
 	color:white;
+	border:none;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
 	width:auto;
+	margin:0 2rem 1rem 1rem;
+	padding:0.5rem 2rem;
+	outline:none;
 }
 
 input[type="submit"]:hover, button:hover {
@@ -196,4 +197,9 @@ input[type="submit"]:hover, button:hover {
 input[type="submit"]:active, button:active {
 	background: linear-gradient(109deg, #D7D4ED 0%, #FFFDFF 139.37%);
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+}
+
+.flex-row {
+	display:flex;
+	justify-content:space-between;
 }

@@ -6,3 +6,6 @@ controllers:
 login:
     path: /login
     controller: App\Controller\loginController::login
+subscribe:
+    path: /subscribe
+    controller: App\Controller\subscribeController::subscribe
