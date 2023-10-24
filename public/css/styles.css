@@ -12,7 +12,7 @@ ul, li {
 
 a, a:hover, a:active, a:visited
 {
-	color:inherit;
+	color:#4245F5;
 	text-decoration:none;
 }
 
@@ -21,6 +21,12 @@ h1,h2,h3,h4,h5,h6,.title {
 }
 
 h1 {
+	font-size:4rem;
+	font-weight:900;
+	color:#4245F5;
+}
+
+.card h1, .card h2 {
 	font-size:4rem;
 	font-weight:900;
 	color:#4245F5;
@@ -46,6 +52,7 @@ html
 
 body {
 	font-size:1.6rem;
+	background-color:#F3F1FF;
 }
 
 main {
@@ -86,10 +93,7 @@ header nav#nav-profile {
 	transition:top 0.2s ease-in-out;
 }
 
-#container-icon-profile {
-}
-
-#background-icon-profile {
+#background-icon-profile, .background-image-profile {
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -98,6 +102,15 @@ header nav#nav-profile {
 	border-radius:9rem;
 	background-color:#4245F5;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
+}
+
+.background-image-profile {
+	width:18rem;
+	height:18rem;
+}
+
+.background-image-profile img {
+	width:17rem;
 }
 
 #header-profile-name {
@@ -140,11 +153,24 @@ section#login-section form {
 	flex-direction: column;
 }
 
+label {
+	font-weight:600;
+}
+
+form {
+	width:100%;
+}
+
+#form-login {
+	margin:5rem 0;
+}
+
 input {
 	box-shadow: 0px 14px 21px 0px rgba(165, 166, 246, 0.20);
 	border-radius: 10px;
 	background: #FAF9FF;
 	border:none;
+	margin:0 2rem 1rem 1rem;
 	padding:0.5rem 2rem;
 	outline:none;
 }
@@ -153,13 +179,23 @@ input:focus {
 	border:2px solid #4245F5;
 }
 
+form input[type="submit"] {
+	margin:auto;
+	margin-top:2rem;
+}
+
 input[type="submit"], button {
 	border-radius:1rem;
 	font-weight:bold;
 	background:#4245F5;
 	transition:background 0.2s;
 	color:white;
+	border:none;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
+	width:auto;
+	margin:0 2rem 1rem 1rem;
+	padding:0.5rem 2rem;
+	outline:none;
 }
 
 input[type="submit"]:hover, button:hover {
@@ -173,4 +209,25 @@ input[type="submit"]:hover, button:hover {
 input[type="submit"]:active, button:active {
 	background: linear-gradient(109deg, #D7D4ED 0%, #FFFDFF 139.37%);
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+}
+
+.flex-row {
+	display:flex;
+	justify-content:space-between;
+}
+
+#plan-price {
+	display:block;
+	padding:1rem 4rem;
+	margin:3rem;
+	border-radius: 76px;
+	background-color: #A5A6F6;
+	color:white;
+	font-size:4rem;
+	text-align:center;
+}
+
+p {
+	white-space:pre-line;	
+	margin:1rem;
 }

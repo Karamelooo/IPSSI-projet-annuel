@@ -6,3 +6,18 @@ controllers:
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+subscribe:
+    path: /subscribe/
+    controller: App\Controller\subscribeController::subscribe
+subscribe2:
+    path: /subscribe/2
+    controller: App\Controller\subscribeController::subscribe2
+subscribe3:
+    path: /subscribe/3
+    controller: App\Controller\subscribeController::subscribe3
+subscribe4:
+    path: /subscribe/4
+    controller: App\Controller\subscribeController::subscribe4
+account:
+    path: /account
+    controller: App\Controller\accountController::account

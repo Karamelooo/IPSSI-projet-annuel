@@ -1,0 +1,24 @@
+{# templates/subscribe.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+
+<section class="card" id="login-section">
+	<h1>Paiement</h1>
+	<form>
+		<label for="owner-name">Nom du propriétaire</label>
+		<input type="text" id="owner-name" name="owner-name">
+		<label for="cb-code">Code de la carte</label>
+		<input type="text" id="cb-code" name="cb-code">
+		<label for="cb-expiration">Expiration de la carte</label>
+		<input type="text" id="cb-expiration" name="cb-expiration">
+		<label for="cb-secu">Code de sécurité</label>
+		<input type="text" id="cb-secu" name="cb-secu">
+			<button>Suivant</button>
+		</div>
+	</form>
+</section>
+
+{% endblock %}
