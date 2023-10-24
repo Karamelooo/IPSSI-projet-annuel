@@ -18,3 +18,6 @@ subscribe3:
 subscribe4:
     path: /subscribe/4
     controller: App\Controller\subscribeController::subscribe4
+account:
+    path: /account
+    controller: App\Controller\accountController::account

@@ -26,6 +26,12 @@ h1 {
 	color:#4245F5;
 }
 
+.card h1, .card h2 {
+	font-size:4rem;
+	font-weight:900;
+	color:#4245F5;
+}
+
 h2 {
 	font-size:3.2rem;
 	font-weight:400;
