@@ -1,56 +1,62 @@
 <?php
 
+
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Security;
 use App\Form\LoginFormType;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface; // Importez l'EntityManager
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SecurityController extends AbstractController
 {
     private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    private $security;
+    
+    public function __construct(EntityManagerInterface $entityManager, Security $security)
     {
         $this->entityManager = $entityManager;
+        $this->security = $security;
     }
-
-    /**
-     * @Route("/login", name="app_login")
-     */
+    #[Route(path: '/login', name: 'app_login')]
     public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         $form = $this->createForm(LoginFormType::class);
         $form->handleRequest($request);
 
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+        print_r("de");
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérez les données du formulaire de connexion
             $data = $form->getData();
-            $email = $data['email'];
-            $password = $data['password'];
 
-            // Vérifiez si l'utilisateur existe dans la base de données
-            $userRepository = $this->entityManager->getRepository(User::class);
-            $user = $userRepository->findOneBy(['email' => $email]);
+            // Ici, vous pouvez vérifier les informations de connexion par rapport à votre base de données
+            // Par exemple, comparez le nom d'utilisateur et le mot de passe avec les données enregistrées dans votre base de données
+            // Si l'authentification réussit, créez un token et connectez l'utilisateur
 
-            if (!$user) {
-                $this->addFlash('danger', 'Adresse email incorrecte.');
-            } elseif ($user->getPassword() !== $password) {
-                $this->addFlash('danger', 'Mot de passe incorrect.');
-            } else {
-                // on redirect vers la page mon compte
-                return $this->redirectToRoute('account');
-            }
+            $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $data['username']]);
+            print_r("dede",$user);
+            
+            
         }
 
-        return $this->render('login.html.twig', [
-            'last_username' => $authenticationUtils->getLastUsername(),
-            'error' => $authenticationUtils->getLastAuthenticationError(),
+        return $this->render('security/login.html.twig', [
             'form' => $form->createView(),
+            'last_username' => $lastUsername,
+            'error' => $error,
         ]);
+    }
+
+    #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
