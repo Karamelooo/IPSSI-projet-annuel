@@ -1,0 +1,83 @@
+Script started on Fri Oct 27 16:22:45 2023
+[1m[7m%[27m[1m[0m                                                                                                                                                                ]2;merwanschool@MBP-de-merwan:~/Desktop/IPSSI-projet-annuel]1;..projet-annuel]7;file://MBP-de-merwan.lan/Users/merwanschool/Desktop/IPSSI-projet-annuel\[0m[27m[24m[J[01;32m➜  [36mIPSSI-projet-annuel[00m [01;34mgit:([31madd/Auth[34m) [33m✗[00m [K[?1h=[?2004hscript cache:clear[18Dcomposer require symfony/security-bundle[?1l>[?2004l
+]2;composer require symfony/security-bundle]1;composer[32m./composer.json has been updated[39m
+[32mRunning composer update symfony/security-bundle[39m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+Nothing to modify in lock file
+[32mInstalling dependencies from lock file (including require-dev)[39m
+Nothing to install, update or remove
+[32mGenerating autoload files[39m
+[32m108 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+
+Run [33mcomposer recipes[39m at any time to see the status of your Symfony recipes.
+
+Executing script cache:clear [37;41m[KO][39;49m
+ [37;41m[KO][39;49m
+[37;41mScript cache:clear returned with error code 1[39;49m
+!!  
+!!  [33mIn DefinitionErrorExceptionPass.php line 49:[39m
+!!  [37;41m                                                                               [39;49m
+!!  [37;41m  Cannot autowire service "App\Controller\LoginController": argument "$passwo  [39;49m
+!!  [37;41m  rdEncoder" of method "__construct()" has type "Symfony\Component\Security\C  [39;49m
+!!  [37;41m  ore\Encoder\UserPasswordEncoderInterface" but this class was not found.      [39;49m
+!!  [37;41m                                                                               [39;49m
+!!  
+!!  
+[37;41mScript @auto-scripts was called via post-update-cmd[39;49m
+[1m[7m%[27m[1m[0m                                                                                                                                                                ]2;merwanschool@MBP-de-merwan:~/Desktop/IPSSI-projet-annuel]1;..projet-annuel]7;file://MBP-de-merwan.lan/Users/merwanschool/Desktop/IPSSI-projet-annuel\[0m[27m[24m[J[01;31m➜  [36mIPSSI-projet-annuel[00m [01;34mgit:([31madd/Auth[34m) [33m✗[00m [K[?1h=[?2004h[7mphp bin/console make:auth[27m
+[K[A[40C[27mp[27mh[27mp[27m [27mb[27mi[27mn[27m/[27mc[27mo[27mn[27ms[27mo[27ml[27me[27m [27mm[27ma[27mk[27me[27m:[27ma[27mu[27mt[27mh[1B[K[?1l>[?2004l
+]2;php bin/console make:auth]1;php
+ [32mWhat style of authentication do you want?[39m [[33mEmpty authenticator[39m]:
+  [[33m0[39m] Empty authenticator
+  [[33m1[39m] Login form authenticator
+ > 1[K
+
+ [32mThe class name of the authenticator to create (e.g. [39m[33mAppCustomAuthenticator[39m[32m)[39m:
+ > LoginFormAuthenticator
+
+ [32mChoose a name for the controller class (e.g. [39m[33mSecurityController[39m[32m)[39m [[33mSecurityController[39m]:
+ > SecurityController
+
+ [32mDo you want to generate a '/logout' URL? (yes/no)[39m [[33myes[39m]:
+ > yes
+
+ [32mDo you want to support remember me? (yes/no)[39m [[33myes[39m]:
+ > 
+
+ [32mHow should remember me be activated?[39m [[33mActivate when the user checks a box[39m]:
+  [[33m0[39m] Activate when the user checks a box
+  [[33m1[39m] Always activate remember me
+ > 1[K[1D[K0[K
+
+ [34mcreated[39m: ]8;;file:///Users/merwanschool/Desktop/IPSSI-projet-annuel/src/Security/LoginFormAuthenticator.php#L1\src/Security/LoginFormAuthenticator.php]8;;\
+ [34mcreated[39m: ]8;;file:///Users/merwanschool/Desktop/IPSSI-projet-annuel/src/Controller/SecurityController.php#L1\src/Controller/SecurityController.php]8;;\
+ [34mcreated[39m: ]8;;file:///Users/merwanschool/Desktop/IPSSI-projet-annuel/templates/security/login.html.twig#L1\templates/security/login.html.twig]8;;\
+
+ [37;42m          [39;49m
+ [37;42m Success! [39;49m
+ [37;42m          [39;49m
+
+ Next:
+ - Customize your new authenticator.
+ - Your [32msecurity.yaml[39m could not be updated automatically. You'll need to add the following config manually:
+
+security:
+    firewalls:
+        main:
+            lazy: true
+            custom_authenticator: App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
+ - Finish the redirect "TODO" in the [32mApp\Security\LoginFormAuthenticator::onAuthenticationSuccess()[39m method.
+ - Review & adapt the login template: [32mtemplates/security/login.html.twig[39m.
+[1m[7m%[27m[1m[0m                                                                                                                                                                ]2;merwanschool@MBP-de-merwan:~/Desktop/IPSSI-projet-annuel]1;..projet-annuel]7;file://MBP-de-merwan.lan/Users/merwanschool/Desktop/IPSSI-projet-annuel\[0m[27m[24m[J[01;32m➜  [36mIPSSI-projet-annuel[00m [01;34mgit:([31madd/Auth[34m) [33m✗[00m [K[?1h=[?2004h

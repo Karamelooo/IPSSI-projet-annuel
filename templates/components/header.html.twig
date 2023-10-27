@@ -1,23 +1,33 @@
 {# templates/components/header.html.twig #}
-	<header id="main-header">
-		<a href="index.php" class="title">MyDrive</a>
-		<div id="container-icon-profile">
-			<input type="checkbox" id="show-menu" class="show-input">
-			<label id="label-show-menu" for="show-menu">
-				<div id="background-icon-profile">
-					<img id="icon-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
-				</div>
-			</label>
-			<nav id="nav-profile">
-				<a href="account.php" id="header-profile-name"><span>John Doe</span></a>
-				<ul>
-					<li>
-						<a href="account.php">Mon compte</a>
-					</li>
-					<li>
-						<a href="logout.php">Déconnexion</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+<header id="main-header">
+    <a  class="title">MyDrive</a>
+    <div id="container-icon-profile">
+        <input type="checkbox" id="show-menu" class="show-input">
+        <label id="label-show-menu" for="show-menu">
+            <div id="background-icon-profile">
+                <img id="icon-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
+            </div>
+        </label>
+        <nav id="nav-profile">
+            <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') : '#' }}" id="header-profile-name">
+                <span>
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                        {{ app.user.email }}
+                    {% else %}
+                        Connectez-vous
+                    {% endif %}
+                </span>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') : '#' }}">
+                        Mon compte
+                    </a>
+                </li>
+                <li>
+                    <a>Déconnexion</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
