@@ -10,16 +10,12 @@
 	<div class="background-image-profile">
 		<img id="image-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
 	</div>
-	<form>
-		<label for="firstname">Prénom</label>
-		<input type="text" id="firstname" name="firstname">
-		<label for="lastname">Nom</label>
-		<input type="text" id="lastname" name="lastname">
-		<label for="email">Adresse email</label>
-		<input type="text" id="email" name="email">
-		<label for="address-user">Adresse postale</label>
-		<input type="text" id="address-user" name="address-user">
-		<button>Modifier</button>
+	<form method="post" action="{{ path('account') }}">
+		{{ form_row(form_account_updated.prenom) }}
+		{{ form_row(form_account_updated.nom) }}
+		<label for="email">email</label>
+		{{ form_row(form_account_updated.adresse) }}
+    	<button type="submit">Modifier</button>
 	</form>
 </section>
 <section class="card">

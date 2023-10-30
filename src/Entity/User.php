@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Email déjà utilisé')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -28,6 +28,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $stockage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company_siret = null;
 
     public function getId(): ?int
     {
@@ -97,5 +115,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getStockage(): ?float
+    {
+        return $this->stockage;
+    }
+
+    public function setStockage(?float $stockage): static
+    {
+        $this->stockage = $stockage;
+
+        return $this;
+    }
+
+    public function getCompanyAddress(): ?string
+    {
+        return $this->company_address;
+    }
+
+    public function setCompanyAddress(?string $company_address): static
+    {
+        $this->company_address = $company_address;
+
+        return $this;
+    }
+
+    public function getCompanySiret(): ?string
+    {
+        return $this->company_siret;
+    }
+
+    public function setCompanySiret(?string $company_siret): static
+    {
+        $this->company_siret = $company_siret;
+
+        return $this;
     }
 }
