@@ -15,11 +15,17 @@ security:
             security: false
         main:
             lazy: true
-            provider: app_user_provider
             custom_authenticator: App\Security\AppCustomAuthenticator
             logout:
-                path: app_logout  # La route vers laquelle rediriger lors de la déconnexion
-                target: app_home  # La route vers laquelle rediriger après la déconnexion
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+            
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

@@ -5,62 +5,55 @@ namespace App\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Http\SecurityRequestAttributes;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class AppCustomAuthenticator extends AbstractAuthenticator
+class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 {
+    use TargetPathTrait;
 
-    private $urlGenerator;
+    public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
-        $this->urlGenerator = $urlGenerator;
-    }
-
-    public function supports(Request $request): ?bool
-    {
-        // Déterminez si ce custom authenticator prend en charge la requête.
-        // Exemple : vérifiez si la requête contient un paramètre d'authentification.
-        return $request->query->has('custom_token');
     }
 
     public function authenticate(Request $request): Passport
     {
-        // Créez et renvoyez un objet Passport qui contient les informations d'authentification.
-        // Exemple : extrayez le token d'authentification de la requête.
-        $customToken = $request->query->get('custom_token');
-        
-        // Créez un objet UserBadge ou votre propre badge personnalisé.
-        $userBadge = new UserBadge($customToken);
+        $email = $request->request->get('email', '');
 
-        // Créez un objet PasswordCredentials et fournissez le mot de passe si nécessaire.
-        $passwordCredentials = new PasswordCredentials(['custom_token' => $customToken]);
+        $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
-        // Créez le Passport et ajoutez les badges nécessaires.
-        $passport = new Passport($userBadge, $passwordCredentials);
-
-        return $passport;
+        return new Passport(
+            new UserBadge($email),
+            new PasswordCredentials($request->request->get('password', '')),
+            [
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+                new RememberMeBadge(),
+            ]
+        );
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // Gérez les actions à effectuer lorsque l'authentification est réussie, par exemple, rediriger l'utilisateur vers une page spécifique.
-        // Exemple : redirigez l'utilisateur vers son tableau de bord.
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            return new RedirectResponse($targetPath);
+        }
+
+        // For example:
         return new RedirectResponse($this->urlGenerator->generate('account'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    protected function getLoginUrl(Request $request): string
     {
-        // Gérez les actions à effectuer lorsque l'authentification échoue, par exemple, affichez un message d'erreur.
-        // Exemple : affichez un message d'erreur personnalisé.
-        $errorMessage = 'L\'authentification a échoué : ' . $exception->getMessage();
-        return new RedirectResponse($this->urlGenerator->generate('login'));
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
-
