@@ -231,3 +231,26 @@ p {
 	white-space:pre-line;	
 	margin:1rem;
 }
+
+section#my-drive {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+table {
+	border-collapse:collapse;
+}
+
+tr {
+	border-bottom:1px solid #A5A6F6;
+}
+
+td {
+	padding:0.5rem;
+}
+
+button#add-file {
+	padding:1rem 3rem;
+}

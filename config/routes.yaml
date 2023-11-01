@@ -21,3 +21,6 @@ subscribe4:
 account:
     path: /account
     controller: App\Controller\accountController::account
+folder:
+    path: /folder
+    controller: App\Controller\folderController::folder
