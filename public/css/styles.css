@@ -239,6 +239,14 @@ section#my-drive {
 	align-items:center;
 }
 
+#my-drive #dashboard {
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
 table {
 	border-collapse:collapse;
 }
@@ -253,4 +261,43 @@ td {
 
 button#add-file {
 	padding:1rem 3rem;
+}
+
+@media all and (min-width:1024px) {
+	main {
+		display:flex;
+		justify-content:center;
+	}
+	section {
+		width:50%;
+	}
+
+	section h1, section h2 {
+		text-align:center;
+	}
+
+	section#my-drive {
+		flex-direction:row;
+		width:100%;
+		justify-content:space-between;
+		align-items:normal;
+	}
+
+	#my-drive #dashboard {
+		width:30%;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		border-right:3px solid #A5A6F6;
+	}
+
+	#my-drive #table {
+		margin:0 3rem;
+		width:70%;
+	}
+	
+	#my-drive #table table {
+		width:100%;
+	}
 }

@@ -6,37 +6,41 @@
 {% block body %}
 
 <section id="my-drive">
-	<h1>Mon Drive</h1>
-	<button id="add-file">+ Nouveau</button>
-	<progress id="stockage-value" max="100" value="10">10%</progress>
-	<span>2Go utilisés sur 20Go</span>
-	<table>
-	<input type="text" name="search" id="search" placeholder="Rechercher un fichier">
-    <thead>
-        <tr>
-            <th width="60%">Nom</th>
-            <th width="20%">Date</th>
-            <th width="20%">Taille</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier1.txt</td>
-            <td>16 juin 2023</td>
-            <td>45 KB</td>
-        </tr>
-        <tr>
-            <td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier2.jpg</td>
-            <td>17 juin 2023</td>
-            <td>256 KB</td>
-        </tr>
-        <tr>
-            <td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier3.pdf</td>
-            <td>01 nov 2023</td>
-            <td>780 KB</td>
-        </tr>
-    </tbody>
-</table>
+	<div id="dashboard">
+		<h1>Mon Drive</h1>
+		<button id="add-file">+ Nouveau</button>
+		<progress id="stockage-value" max="100" value="10">10%</progress>
+		<span>2Go utilisés sur 20Go</span>
+	</div>
+	<div id="table">
+		<table>
+			<input type="text" name="search" id="search" placeholder="Rechercher un fichier">
+			<thead>
+				<tr>
+					<th width="60%">Nom</th>
+					<th width="20%">Date</th>
+					<th width="20%">Taille</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier1.txt</td>
+					<td>16 juin 2023</td>
+					<td>45 KB</td>
+				</tr>
+				<tr>
+					<td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier2.jpg</td>
+					<td>17 juin 2023</td>
+					<td>256 KB</td>
+				</tr>
+				<tr>
+					<td><img src="images/svg/file.svg" alt="Icone de fichier">Fichier3.pdf</td>
+					<td>01 nov 2023</td>
+					<td>780 KB</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </section>
 
 {% endblock %}
