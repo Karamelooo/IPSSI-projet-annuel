@@ -266,7 +266,9 @@ button#add-file {
 @media all and (min-width:1024px) {
 	main {
 		display:flex;
+		flex-direction:column;
 		justify-content:center;
+		align-items:center;
 	}
 	section {
 		width:50%;
