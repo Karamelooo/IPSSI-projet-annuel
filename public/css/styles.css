@@ -161,6 +161,15 @@ form {
 	width:100%;
 }
 
+form, form div {
+	display:flex;
+	flex-direction:column;
+}
+
+form label {
+	margin-left:1rem;
+}
+
 #form-login {
 	margin:5rem 0;
 }
