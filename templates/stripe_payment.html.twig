@@ -1,0 +1,38 @@
+{# templates/payment/stripe_payment.html.twig #}
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Paiement Stripe</h1>
+    <form id="payment-form">
+        <div id="card-element">
+        </div>
+
+        <button type="submit">Payer</button>
+    </form>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('{{ app.request.server.get('STRIPE_PUBLIC_KEY') }}');
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            stripe.confirmCardPayment('{{ clientSecret }}', {
+                payment_method: {
+                    card: card,
+                }
+            }).then(function (result) {
+                if (result.error) {
+                    console.error(result.error);
+                } else {
+                    window.location.href = '{{ path('payment_success') }}';
+                }
+            });
+        });
+    </script>
+{% endblock %}
+

@@ -9,7 +9,7 @@
             </div>
         </label>
         <nav id="nav-profile">
-            <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') : '#' }}" id="header-profile-name">
+            <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? '#' : path('account') }}" id="header-profile-name">
                 <span>
                     {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                         {{ app.user.email }}
@@ -21,12 +21,12 @@
             <ul>
                 {% if app.user %}
                     <li>
-                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') : '#' }}">
+                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? '#' : path('account') }}">
                             Mon compte
                         </a>
                     </li>
                     <li>
-                        <a href="{{is_granted('IS_AUTHENTICATED_FULLY') ? path('app_logout') : '#' }}">Déconnexion</a>
+                        <a href="{{is_granted('IS_AUTHENTICATED_FULLY') ? '#' : path('account') }}">Déconnexion</a>
                     </li>
                 {% endif %}
             </ul>
