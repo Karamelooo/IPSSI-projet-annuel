@@ -6,6 +6,10 @@ controllers:
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+etape1:
+    path: /inscription
+    controller: 'App\Controller\InscriptionController::etape1'
+
 subscribe:
     path: /subscribe/
     controller: App\Controller\subscribeController::subscribe
@@ -24,3 +28,11 @@ account:
 folder:
     path: /folder
     controller: App\Controller\folderController::folder
+
+stripe_payment:
+    path: /payment
+    controller: App\Controller\PaymentController::stripePayment
+
+payment_success:
+    path: /payment/success
+    controller: App\Controller\PaymentController::success

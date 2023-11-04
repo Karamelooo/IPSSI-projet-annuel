@@ -1,0 +1,22 @@
+{# templates/inscription_form.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon titre{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+
+{{ form_row(form.firstname) }}
+{{ form_row(form.lastname) }}
+{{ form_row(form.email) }}
+{{ form_row(form.addressUser) }}
+{{ form_row(form.addressEntreprise) }}
+{{ form_row(form.siret) }}
+
+<button type="submit">Valider</button>
+
+{{ form_end(form) }}
+
+
+{% endblock %}
