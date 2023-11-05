@@ -38,14 +38,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $stockage = null;
+    #[ORM\Column]
+    private ?float $stockage = 0;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company_address = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company_siret = null;
+
+    #[ORM\Column]
+    private ?float $storageUse = 0;
 
     public function getId(): ?int
     {
@@ -185,6 +188,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompanySiret(?string $company_siret): static
     {
         $this->company_siret = $company_siret;
+
+        return $this;
+    }
+
+    public function getStorageUse(): ?float
+    {
+        return $this->storageUse;
+    }
+
+    public function setStorageUse(float $storageUse): static
+    {
+        $this->storageUse = $storageUse;
 
         return $this;
     }

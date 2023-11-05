@@ -2,48 +2,72 @@
 
 namespace App\Form;
 
-use App\Entity\UploadedFile;
+use App\Entity\UploadFile;
 use Symfony\Component\Form\AbstractType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\File as ConFile;
 
 class UploadedFileType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('filenam')
-            ->add('originalFilename')
-            ->add('MimeType')
-            ->add('size')
-            ->add('path')
-            ->add('creatAt')
-            ->add('updateAt')
-            ->add('file', FileType::class, [
-                'label' => 'Choose file',
-                
-                // unmapped means that this field is not associated with any entity property
-                'mapped' => false,
-
-                // make it optional so you don't have to re-upload the file
-                // whenever you edit the details
-                'required' => false,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
+            ->add('file', DropzoneType::class, [
+                'attr' => [
+                    'placeholder' => 'Déposez vos fichiers ici ou cliquez',
+                    'class' => 'dropzone-media',
+                ],
                 'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
+                    new ConFile([
+                        'maxSize' => '25000M',
                         'mimeTypes' => [
+                            // Documents
                             'application/pdf',
                             'application/x-pdf',
-                            // You can add more MIME types here
+                            'application/msword', // DOC
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // DOCX
+                            'application/vnd.ms-excel', // XLS
+                            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // XLSX
+                            'application/vnd.ms-powerpoint', // PPT
+                            'application/vnd.openxmlformats-officedocument.presentationml.presentation', // PPTX
+                            'text/plain', // TXT
+
+                            // Images
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/gif',
+                            'image/bmp',
+                            'image/webp',
+                            'image/svg+xml',
+                            'image/tiff',
+                            'image/bmp',
+
+                            // Audio
+                            'audio/mpeg', // MP3
+                            'audio/wav',
+
+                            // Video
+                            'video/mp4',
+                            'video/x-msvideo', // AVI
+                            'video/quicktime', // MOV
+
+                            // Archives
+                            'application/zip',
+                            'application/x-rar-compressed',
+                            'application/x-tar',
+                            'application/x-7z-compressed',
+
+                            // Others
+                            'application/octet-stream',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid PDF document',
                     ])
-                ],
+                    ],
+                'translation_domain' => false,
             ])
         ;
     }
@@ -51,7 +75,7 @@ class UploadedFileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => UploadedFile::class,
+            'data_class' => UploadFile::class,
         ]);
     }
 }
