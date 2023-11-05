@@ -195,7 +195,7 @@ form label {
 	margin:5rem 0;
 }
 
-input {
+input, form#payment-form div {
 	box-shadow: 0px 14px 21px 0px rgba(165, 166, 246, 0.20);
 	border-radius: 10px;
 	background: #FAF9FF;
@@ -230,7 +230,8 @@ input[type="submit"], button, .button {
 
 input[type="submit"]:hover, button:hover {
 	background: white;
-	color:black;
+	color:#4245F5 !important;
+	cursor:pointer;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
 	transition:background 0.2s;
 
@@ -239,6 +240,10 @@ input[type="submit"]:hover, button:hover {
 input[type="submit"]:active, button:active {
 	background: linear-gradient(109deg, #D7D4ED 0%, #FFFDFF 139.37%);
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+}
+
+form#payment-form div {
+	background-color:white;
 }
 
 .danger {
