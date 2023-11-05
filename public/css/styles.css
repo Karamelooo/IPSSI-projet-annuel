@@ -130,6 +130,27 @@ header nav#nav-profile {
 	top:0;
 }
 
+.popup {
+	position:fixed;
+	display:flex;
+	z-index:-1;
+	top:0;
+	left:0;
+	width:100vw;
+	height:100vh;
+	opacity:0;
+	justify-content:center;
+	background-color:rgba(0, 0, 0, 0.5);
+	align-items:center;
+}
+
+.show-input:checked ~ .popup {
+	display:flex;
+	z-index:1;
+	opacity:1;
+	transition:opacity 0.2s;
+}
+
 .show-input {
 	display:none;
 }
@@ -218,6 +239,10 @@ input[type="submit"]:hover, button:hover {
 input[type="submit"]:active, button:active {
 	background: linear-gradient(109deg, #D7D4ED 0%, #FFFDFF 139.37%);
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 10px 0px #B1B3BF;
+}
+
+.danger {
+	background:#F26F6F;
 }
 
 .flex-row {

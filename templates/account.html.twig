@@ -34,5 +34,16 @@
 		<a class="button" href="{{ path('folder') }}">Voir mes fichiers</a>
 	</div>
 </section>
-
+<section class="card">
+	<h2>Supprimer mon compte</h2>
+        <label for="show-delete-popup" class="button danger">Supprimer mon compte définitivement</label>
+</section>
+<input type="checkbox" id="show-delete-popup" class="show-input">
+<aside class="popup">
+	<div class="card">
+		<h2>Voulez-vous vraiment supprimer votre compte ?</h2>
+		<a class="button danger" href="#">Supprimer définitivement</a>
+		<label for="show-delete-popup" class="button">Non, annuler</a>
+	</div>
+</aside>
 {% endblock %}
