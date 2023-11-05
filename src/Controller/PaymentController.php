@@ -29,12 +29,10 @@ class PaymentController extends AbstractController
      */
     public function stripePayment(Request $request): Response
     {
-        // Configure la clé secrète Stripe
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-        // Créez un paiement Stripe
         $paymentIntent = PaymentIntent::create([
-            'amount' => 1000, 
+            'amount' => 20000, 
             'currency' => 'eur',
         ]);
 
@@ -55,7 +53,7 @@ class PaymentController extends AbstractController
         // Mise à jour du champ "stockage" de l'utilisateur en ajoutant 10
         if ($user) {
             $email = $user->getEmail();
-            $user->setStockage($user->getStockage() + 10);
+            $user->setStockage($user->getStockage() + 20);
             // Enregistrez la mise à jour dans la base de données
             $this->entityManager->persist($user);
             $this->entityManager->flush();
