@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+
+    <!-- File Card -->
+    <div class="card shadow-sm">
+        
+        <!-- Header -->
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+            {{ file.name }}
+            <a href="{{ path('app_dashboard') }}" class="btn btn-light">Retour</a>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+            {% if isPdf %}
+                <embed src="{{ path('app_dashboard_serve', {'filename': file.getFile}) }}" type="application/pdf" class="w-100" style="height:80vh;" />
+            {% elseif isImage %}
+                <img src="{{ path('app_dashboard_serve', {'filename': file.getFile}) }}" alt="{{ file.name }}" class="img-fluid rounded shadow">
+            {% elseif isVideo %}
+                <video width="100%" controls>
+                    <source src="{{ path('app_dashboard_serve', {'filename': file.getFile}) }}" type="video/mp4">
+                    Votre navigateur ne prend pas en charge les vidéos.
+                </video>
+            {% elseif isAudio %}
+                <audio controls>
+                    <source src="{{ path('app_dashboard_serve', {'filename': file.getFile}) }}" type="audio/mp3">
+                    Votre navigateur ne prend pas en charge l'audio.
+                </audio>
+            {% elseif isDocument %}
+{% if isDocument %}
+    <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{ absolute_url(path('app_dashboard_serve', {'filename': file.getFile})) }}" class="w-100" style="height:80vh;"></iframe>
+{% endif %}
+
+            {% else %}
+                <p>Ce format de fichier n'est pas pris en charge pour la visualisation.</p>
+            {% endif %}
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{{ path('dashboard_delete', {'id': file.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce fichier?');">Supprimer</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
