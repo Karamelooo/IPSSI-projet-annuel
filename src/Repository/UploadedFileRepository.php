@@ -107,7 +107,18 @@ class UploadedFileRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function countFilesUploadedToday()
+    {
+        $today = new \DateTime('now');
+        $today->setTime(0, 0);
 
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.date >= :today')
+            ->setParameter('today', $today)
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
 //    /**
 //     * @return File[] Returns an array of File objects
