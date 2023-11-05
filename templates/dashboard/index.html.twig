@@ -43,7 +43,35 @@
             {{ form_end(form) }}
         </div>
     </div>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                Nombre de fichier uploadés
+            </div>
+            <div class="card-body">
+                    {{ totalFilesCount }}
+                
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                Nombre de fichier uploadés aujourd'hui
+            </div>
+            <div class="card-body">
+                    {{ filesTodayCount }}
+                
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                Nombre de fichier moyen par client
+            </div>
+            <div class="card-body">
+                    {{ averageFilesPerUser }}
+                
+            </div>
+        </div>
+    {% endif %}
     <div class="container mt-5">
         <h3>Vos fichiers :</h3>
 
@@ -53,6 +81,7 @@
             <p><strong>Espace total disponible:</strong> {{ (app.user.stockage)|number_format(3, ',', ' ') }} Go</p>
             <p><strong>Espace restant:</strong> {{ ((app.user.stockage) - (app.user.storageUse))|number_format(3, ',', ' ') }} Go</p>
         </div>
+
 
 
 
@@ -86,6 +115,10 @@
             <th scope="col" class="text-center">Visualiser</th>
             <th scope="col" class="text-center">Télécharger</th>
             <th scope="col" class="text-center">Supprimer</th>
+            {% if is_granted('ROLE_ADMIN') %}
+                <th scope="col" class="text-center">Client</th>
+            {% endif %}
+
         </tr>
     </thead>
     <tbody>
@@ -115,6 +148,11 @@
                     }
                 </script>
             </td>
+            {% if is_granted('ROLE_ADMIN') %}
+                <td>{{ file.owner }}</td>
+                {{ totalFilesCount }}
+            {% endif %}
+
         </tr>
         {% endfor %}
     </tbody>

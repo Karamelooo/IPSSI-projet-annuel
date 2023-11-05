@@ -7,6 +7,7 @@ use SplFileInfo;
 use App\Entity\UploadFile;
 use App\Form\UploadedFileType;
 use App\Repository\UploadedFileRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,15 +27,41 @@ class UploadedFileController extends AbstractController
     //const BYTES_IN_ONE_GIGABYTE = 1.0e9; // 1 Go = 1 x 10^9 octets
     const BYTES_IN_ONE_GIGABYTE = 1024 * 1024 * 1024;
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function index(Request $request, EntityManagerInterface $entityManager, UploadedFileRepository $UploadedFileRepository): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UploadedFileRepository $UploadedFileRepository, UserRepository $UserRepository): Response
     {
         $file = new UploadFile();
         $user = $this->getUser();
     
         $form = $this->createForm(UploadedFileType::class, $file);
         $form->handleRequest($request);
-    
-        $allFiles = $UploadedFileRepository->findBy(['user' => $this->getUser()]);
+        
+        // Vérifier si l'utilisateur a le rôle admin
+        if ($this->isGranted('ROLE_ADMIN')) {
+            // Initialiser les variables pour les informations demandées
+            $totalFilesCount = 0;
+            $filesTodayCount = 0;
+            $averageFilesPerUser = 0;
+            
+            // Récupérer tous les fichiers si l'utilisateur est admin
+            $allFiles = $UploadedFileRepository->findAll();
+
+            // Obtenir le nombre total de fichiers
+            $totalFilesCount = count($allFiles);
+
+            // Obtenir le nombre de fichiers uploadés aujourd'hui
+            $filesTodayCount = $UploadedFileRepository->countFilesUploadedToday();
+
+            // Obtenir le nombre total d'utilisateurs
+            $totalUsersCount = $UserRepository->count([]);
+
+            // Calculer le nombre moyen de fichiers par utilisateur
+            if ($totalUsersCount > 0) {
+                $averageFilesPerUser = $totalFilesCount / $totalUsersCount;
+            }
+        } else {
+            // Récupérer seulement les fichiers de l'utilisateur courant
+            $allFiles = $UploadedFileRepository->findBy(['user' => $user]);
+        }
     
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile */
@@ -85,6 +112,9 @@ class UploadedFileController extends AbstractController
         return $this->render('dashboard/index.html.twig', [
             'form' => $form->createView(),
             'files' => $allFiles,
+            'totalFilesCount' => $totalFilesCount,
+            'filesTodayCount' => $filesTodayCount,
+            'averageFilesPerUser' => $averageFilesPerUser,
         ]);
     }
     
