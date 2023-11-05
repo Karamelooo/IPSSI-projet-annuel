@@ -9,33 +9,73 @@
 	<h1>Informations personnelles</h1>
 	<div class="background-image-profile">
 		<img id="image-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
-	</div>
-	<form method="post" action="{{ path('account') }}">
+	</div>  
+		{{ form_start(form_account_updated) }}
 		{{ form_row(form_account_updated.prenom) }}
 		{{ form_row(form_account_updated.nom) }}
-		<label for="email">email</label>
 		{{ form_row(form_account_updated.adresse) }}
     	<button type="submit">Modifier</button>
-	</form>
+		{{ form_end(form_account_updated) }}
 </section>
 <section class="card">
 	<h2>Informations entreprise</h2>
-	<form>
-		<label for="address-entreprise">Adresse postale entreprise</label>
-		<input type="text" id="address-entreprise" name="address-entreprise">
-		<label for="siret">SIRET</label>
-		<input type="text" id="siret" name="siret">
-		<button>Modifier</button>
-	</form>
+		{{ form_start(form_account_updated2) }}
+		{{ form_row(form_account_updated2.company_address) }}
+		{{ form_row(form_account_updated2.company_siret) }}
+		<button type="submit">Modifier</button>
+		{{ form_end(form_account_updated2) }}
 </section>
 <section class="card">
 	<h2>Mon stockage</h2>
 	<progress id="stockage-value" max="100" value="10">10%</progress>
 	<span>2Go utilisés sur 20Go</span>
 	<div class="flex-row">
-		<button>Acheter</button>
-		<button>Voir mes fichiers</button>
+		<a class="button" href="{{ path('etape1') }}">Acheter</a>
+		<a class="button" href="{{ path('folder') }}">Voir mes fichiers</a>
 	</div>
 </section>
-
+<section class="card">
+    <h2>Mes commandes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Numéro de commande   </th>
+                <th>Date de commande    </th>
+                <th>Statut  </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.orderNumber }}</td>
+                    <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+                   	<td>
+                        {% if order.status == 1 %}
+                            Payé
+                        {% else %}
+                           <a href="{{ path('stripe_payment') }}"> Non-payé </a>                          
+                        {% endif %}
+                    </td>
+					<td>  
+						{% if order.status == 1 %} 
+							<a href="{{ path('generate_invoice_pdf',{'orderNumber': order.orderNumber}) }}" class="btn btn-primary">Facture> 
+						{% endif %}		
+					</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<section class="card">
+	<h2>Supprimer mon compte</h2>
+        <label for="show-delete-popup" class="button danger">Supprimer mon compte définitivement</label>
+</section>
+<input type="checkbox" id="show-delete-popup" class="show-input">
+<aside class="popup">
+	<div class="card">
+		<h2>Voulez-vous vraiment supprimer votre compte ?</h2>
+		<a class="button danger" href="{{ path('app_delete_account') }}">Supprimer définitivement</a>
+		<label for="show-delete-popup" class="button">Non, annuler</a>
+	</div>
+</aside>
 {% endblock %}

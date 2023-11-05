@@ -3,13 +3,18 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+homepage:
+    path: /
+    controller: App\Controller\homepageController::homepage
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+app_delete_account:
+    path: /delete
+    controller: App\Controller\deleteController::delete
 etape1:
     path: /inscription
     controller: 'App\Controller\InscriptionController::etape1'
-
 subscribe:
     path: /subscribe/
     controller: App\Controller\subscribeController::subscribe
@@ -28,11 +33,9 @@ account:
 folder:
     path: /folder
     controller: App\Controller\folderController::folder
-
 stripe_payment:
     path: /payment
     controller: App\Controller\PaymentController::stripePayment
-
 payment_success:
     path: /payment/success
     controller: App\Controller\PaymentController::success
