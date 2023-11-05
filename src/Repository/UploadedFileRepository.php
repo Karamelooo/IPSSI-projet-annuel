@@ -119,6 +119,18 @@ class UploadedFileRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+    public function findByCriteria($criteria = [], $orderBy = null)
+{
+    $queryBuilder = $this->createQueryBuilder('f');
+    
+    if ($orderBy) {
+        $queryBuilder->orderBy('f.' . key($orderBy), current($orderBy));
+    }
+    
+    // Ajoutez vos autres conditions ici, le cas échéant
+
+    return $queryBuilder->getQuery()->getResult();
+}
 
 //    /**
 //     * @return File[] Returns an array of File objects

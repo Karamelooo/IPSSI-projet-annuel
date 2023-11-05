@@ -34,6 +34,12 @@ class UploadedFileController extends AbstractController
     
         $form = $this->createForm(UploadedFileType::class, $file);
         $form->handleRequest($request);
+
+        $sortColumn = $request->query->get('sort', 'date'); // Par défaut trié par date
+        $sortDirection = $request->query->get('direction', 'DESC'); // Par défaut en ordre décroissant
+        
+        // Utiliser les paramètres de tri lors de la récupération des fichiers
+       
         $totalFilesCount = 0;
         $filesTodayCount = 0;
         $averageFilesPerUser = 0;
@@ -62,7 +68,9 @@ class UploadedFileController extends AbstractController
             // Récupérer seulement les fichiers de l'utilisateur courant
             $allFiles = $UploadedFileRepository->findBy(['user' => $user]);
         }
-    
+        $orderBy = [$sortColumn => $sortDirection];
+
+        $allFiles = $UploadedFileRepository->findByCriteria([], $orderBy);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['file']->getData();

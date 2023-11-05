@@ -110,8 +110,16 @@
 
 
             </th>
-            <th scope="col" class="text-center sortable"  id="sizeFileColumn">Taille (Octets) &darr;</th>
-            <th scope="col" class="text-center sortable" id="dateAdded">Date d'ajout &darr;</th>
+            <!-- En-tête de colonne pour le tri par taille -->
+            <th scope="col" class="text-center sortable" id="sizeFileColumn">
+                <a href="{{ path('app_dashboard', {sort: 'size', direction: 'ASC'}) }}">Taille (Octets) &uarr;</a> |
+                <a href="{{ path('app_dashboard', {sort: 'size', direction: 'DESC'}) }}">Taille (Octets) &darr;</a>
+            </th>
+            <!-- En-tête de colonne pour le tri par date -->
+            <th scope="col" class="text-center sortable" id="dateAdded">
+                <a href="{{ path('app_dashboard', {sort: 'date', direction: 'ASC'}) }}">Date d'ajout &uarr;</a> |
+                <a href="{{ path('app_dashboard', {sort: 'date', direction: 'DESC'}) }}">Date d'ajout &darr;</a>
+            </th>
             <th scope="col" class="text-center">Visualiser</th>
             <th scope="col" class="text-center">Télécharger</th>
             <th scope="col" class="text-center">Supprimer</th>
