@@ -29,10 +29,8 @@ class PaymentController extends AbstractController
      */
     public function stripePayment(Request $request): Response
     {
-        // Configure la clé secrète Stripe
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-        // Créez un paiement Stripe
         $paymentIntent = PaymentIntent::create([
             'amount' => 20000, 
             'currency' => 'eur',
