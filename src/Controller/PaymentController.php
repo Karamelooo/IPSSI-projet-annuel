@@ -52,7 +52,6 @@ class PaymentController extends AbstractController
         // Récupérez l'entité User actuellement connectée (vous devrez peut-être ajuster cela en fonction de votre logique d'authentification)
         $user = $this->getUser();
 
-
         // Mise à jour du champ "stockage" de l'utilisateur en ajoutant 10
         if ($user) {
             $email = $user->getEmail();
