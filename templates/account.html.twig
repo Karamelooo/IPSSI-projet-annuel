@@ -9,24 +9,21 @@
 	<h1>Informations personnelles</h1>
 	<div class="background-image-profile">
 		<img id="image-profile" src="{{ asset('images/svg/profile.svg') }}" alt="Photo de profil de l'utilisateur">
-	</div>
-	<form method="post" action="{{ path('account') }}">
+	</div>  
+		{{ form_start(form_account_updated) }}
 		{{ form_row(form_account_updated.prenom) }}
 		{{ form_row(form_account_updated.nom) }}
-		<label for="email">email</label>
 		{{ form_row(form_account_updated.adresse) }}
     	<button type="submit">Modifier</button>
-	</form>
+		{{ form_end(form_account_updated) }}
 </section>
 <section class="card">
 	<h2>Informations entreprise</h2>
-	<form>
-		<label for="address-entreprise">Adresse postale entreprise</label>
-		<input type="text" id="address-entreprise" name="address-entreprise">
-		<label for="siret">SIRET</label>
-		<input type="text" id="siret" name="siret">
-		<button>Modifier</button>
-	</form>
+		{{ form_start(form_account_updated2) }}
+		{{ form_row(form_account_updated2.company_address) }}
+		{{ form_row(form_account_updated2.company_siret) }}
+		<button type="submit">Modifier</button>
+		{{ form_end(form_account_updated2) }}
 </section>
 <section class="card">
 	<h2>Mon stockage</h2>
