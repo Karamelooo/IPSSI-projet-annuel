@@ -9,6 +9,11 @@ homepage:
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+
+app_delete_account:
+    path: /delete
+    controller: App\Controller\SecurityController::delete
+
 etape1:
     path: /inscription
     controller: 'App\Controller\InscriptionController::etape1'
