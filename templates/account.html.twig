@@ -56,7 +56,11 @@
                            <a href="{{ path('stripe_payment') }}"> Non-payé </a>                          
                         {% endif %}
                     </td>
-					<td> <a href="{{ path('generate_invoice_pdf',{'orderNumber': order.orderNumber}) }}" class="btn btn-primary">Facture> </td>
+					<td>  
+						{% if order.status == 1 %} 
+							<a href="{{ path('generate_invoice_pdf',{'orderNumber': order.orderNumber}) }}" class="btn btn-primary">Facture> 
+						{% endif %}		
+					</td>
                 </tr>
             {% endfor %}
         </tbody>
