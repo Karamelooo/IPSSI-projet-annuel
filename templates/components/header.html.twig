@@ -21,7 +21,7 @@
             <ul>
                 {% if app.user %}
                     <li>
-                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? '#' : path('account') }}">
+                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') }}">
                             Mon compte
                         </a>
                     </li>

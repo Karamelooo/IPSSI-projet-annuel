@@ -193,12 +193,12 @@ form input[type="submit"] {
 	margin-top:2rem;
 }
 
-input[type="submit"], button {
+input[type="submit"], button, .button {
 	border-radius:1rem;
 	font-weight:bold;
 	background:#4245F5;
 	transition:background 0.2s;
-	color:white;
+	color:white !important;
 	border:none;
 	box-shadow: -5px -5px 10px 0px #FFF, 5px 5px 11px -3px #A5A6F6;
 	width:auto;
