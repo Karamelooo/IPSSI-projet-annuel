@@ -34,13 +34,13 @@ class UploadedFileController extends AbstractController
     
         $form = $this->createForm(UploadedFileType::class, $file);
         $form->handleRequest($request);
-        
+        $totalFilesCount = 0;
+        $filesTodayCount = 0;
+        $averageFilesPerUser = 0;
         // Vérifier si l'utilisateur a le rôle admin
         if ($this->isGranted('ROLE_ADMIN')) {
             // Initialiser les variables pour les informations demandées
-            $totalFilesCount = 0;
-            $filesTodayCount = 0;
-            $averageFilesPerUser = 0;
+            
             
             // Récupérer tous les fichiers si l'utilisateur est admin
             $allFiles = $UploadedFileRepository->findAll();
