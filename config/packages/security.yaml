@@ -44,7 +44,7 @@ security:
         - { path: ^/payment_success$, roles: ROLE_USER }
         - { path: ^/delete$, roles: ROLE_USER }
         - { path: ^/inscription$, roles: ROLE_USER }
-
+        - { path: ^/dashboard$, roles: ROLE_USER }
 
 
 when@test:
