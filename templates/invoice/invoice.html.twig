@@ -1,0 +1,57 @@
+{% block body %}
+    <div class="container">
+        <hr>
+        <div class="invoice-details">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Facture #{{ inscription.orderNumber }}</h2>
+                    <p>Facturé le {{ inscription.createdAt|date('d/m/Y') }}<br></p
+                </div>
+                <div class="col-6" style="text-align: right;"> 
+                    <address>
+                        <strong>MyDriver</strong><br>
+                        25 Rue Claude Tillier, 75012 Paris<br>
+                        contact@mydrive.com
+                    </address>
+                </div>
+                <div class="col-6 text-left">
+                    <h2>Client</h2>
+                    <address>
+                        <strong>{{ inscription.firstname }} {{ inscription.lastname }}</strong><br>
+                        {{ inscription.addressUser }}<br>
+                        {{ inscription.email }}
+                    </address>
+                </div>
+            </div>
+        </div>
+
+        <div class="invoice-items">
+            <h2>Détails de la Commande</h2>
+            <table class="table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead style="background-color: #f0f0f0;">
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ccc;">Article</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ccc;">Quantité</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ccc;">Prix Unitaire</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ccc;">Total</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #f8f8f8;">
+                    <tr>
+                        <td style="font-weight: bold; background-color: #e0e0e0; text-align: left; padding: 10px; border: 1px solid #ccc;">Stockage myDrive</td>
+                        <td style="text-align: left; padding: 10px; border: 1px solid #ccc;">10 Giga</td>
+                        <td style="text-align: right; padding: 10px; border: 1px solid #ccc;">10.00 € TTC</td>
+                        <td style="text-align: right; padding: 10px; border: 1px solid #ccc;">10.00 € TTC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="invoice-total">
+            <p>Sous-Total : 8.00 € HT</p>
+            <p>TVA (20%) : 2.00 €</p> 
+            <p>Total à payer : 10.00 € TTC</p> 
+        </div>
+
+    </div>
+{% endblock %}

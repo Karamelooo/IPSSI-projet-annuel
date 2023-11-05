@@ -21,12 +21,12 @@
             <ul>
                 {% if app.user %}
                     <li>
-                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? path('account') }}">
+                        <a href="{{ is_granted('IS_AUTHENTICATED_FULLY') ? '#' : path('account') }}">
                             Mon compte
                         </a>
                     </li>
-                    <li>
-                        <a href="{{is_granted('IS_AUTHENTICATED_FULLY') ? path('app_logout') : path('account') }}">Déconnexion</a>
+                    <li {{is_granted('IS_AUTHENTICATED_FULLY')}}>
+                        <a href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% endif %}
             </ul>

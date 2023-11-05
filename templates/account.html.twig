@@ -30,9 +30,37 @@
 	<progress id="stockage-value" max="100" value="10">10%</progress>
 	<span>2Go utilisés sur 20Go</span>
 	<div class="flex-row">
-		<a class="button" href="{{ path('stripe_payment') }}">Acheter</a>
+		<a class="button" href="{{ path('etape1') }}">Acheter</a>
 		<a class="button" href="{{ path('folder') }}">Voir mes fichiers</a>
 	</div>
+</section>
+<section class="card">
+    <h2>Mes commandes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Numéro de commande   </th>
+                <th>Date de commande    </th>
+                <th>Statut  </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.orderNumber }}</td>
+                    <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+                   	<td>
+                        {% if order.status == 1 %}
+                            Payé
+                        {% else %}
+                           <a href="{{ path('stripe_payment') }}"> Non-payé </a>                          
+                        {% endif %}
+                    </td>
+					<td> <a href="{{ path('generate_invoice_pdf',{'orderNumber': order.orderNumber}) }}" class="btn btn-primary">Facture> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
 <section class="card">
 	<h2>Supprimer mon compte</h2>
