@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Inscription;
 use App\Entity\User;
 use App\Form\AccountUpdateType;
 use App\Form\AccountUpdate2Type;
@@ -21,6 +22,11 @@ class accountController extends AbstractController
         $form = $this->createForm(AccountUpdateType::class, $user);
         $form2 = $this->createForm(AccountUpdate2Type::class, $user);
         $user_data = $entityManager->getRepository(User::class)->find($user);
+
+
+         // Récupérez les dernières commandes de l'utilisateur
+         $orders = $entityManager->getRepository(Inscription::class)
+         ->findBy(['userAccountEmail' => $user->getEmail()], ['createdAt' => 'DESC']);
 
         // Gérez la soumission du formulaire ici
         $form->handleRequest($request);
@@ -60,8 +66,11 @@ class accountController extends AbstractController
         return $this->render('account.html.twig', [
             'form_account_updated' => $form->createView(),
             'form_account_updated2' => $form2->createView(),
+            'orders' => $orders, 
+
         ]);
     }
+    
 }
 
 
