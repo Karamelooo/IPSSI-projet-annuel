@@ -37,8 +37,15 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/account, roles: ROLE_USER }
-        - { path: ^/inscription$, roles: ROLE_USER }
         - { path: ^/payment$, roles: ROLE_USER }
+        - { path: ^/$, roles: ROLE_USER }
+        - { path: ^/stripe_payment$, roles: ROLE_USER }
+        - { path: ^/folder$, roles: ROLE_USER }
+        - { path: ^/payment_success$, roles: ROLE_USER }
+        - { path: ^/delete$, roles: ROLE_USER }
+        - { path: ^/inscription$, roles: ROLE_USER }
+
+
 
 when@test:
     security:
