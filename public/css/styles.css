@@ -70,7 +70,7 @@ header#main-header {
 	height:10rem;
 	width:100%;
 	background-color:#F3F1FF;
-	filter: drop-shadow(-20px -20px 60px #FFF) drop-shadow(0px 4px 18px #A5A6F6);
+	filter: drop-shadow(-20px -20px 30px #FFF) drop-shadow(0px 4px 18px #A5A6F6);
 }
 
 header a.title {
