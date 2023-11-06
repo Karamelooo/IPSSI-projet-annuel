@@ -16,6 +16,8 @@ class deleteController extends AbstractController
     public function delete(UserInterface $user, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        $tokenStorage = $this->container->get('security.token_storage');
+        $tokenStorage->setToken(null);
         $entityManager->remove($user);
         $entityManager->flush();
         return $this->redirectToRoute('homepage');
