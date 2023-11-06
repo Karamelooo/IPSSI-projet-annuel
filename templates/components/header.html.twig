@@ -25,6 +25,11 @@
                             Mon compte
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ is_granted('ROLE_USER') ? path('app_dashboard') : '#'   }}">
+                            Mes fichiers
+                        </a>
+                    </li>
                     <li {{is_granted('IS_AUTHENTICATED_FULLY')}}>
                         <a href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
