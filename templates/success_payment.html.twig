@@ -2,14 +2,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container mt-5">
-        <div class="alert alert-success" role="alert">
+    <section class="card">
             <h1 class="display-4">Paiement Réussi !</h1>
             <p>Merci pour votre achat. Votre paiement a été traité avec succès.</p>
-        </div>
-
         <div class="text-center mt-3">
-            <a href="{{ path('account') }}" class="btn btn-primary">Mon Compte</a>
+            <a class="button" href="{{ path('account') }}">Mon Compte</a>
         </div>
-    </div>
+    </section>
 {% endblock %}
