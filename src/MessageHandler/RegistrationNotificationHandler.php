@@ -21,7 +21,7 @@ class RegistrationNotificationHandler implements \Symfony\Component\Messenger\Ha
         $user = $message->getUser();
 
         $email = (new Email())
-            ->from('mydriveipssi@gmail.com') // Adresse d'expéditeur
+            ->from($_ENV['MAILER_ADDRESS']) // Adresse d'expéditeur
             ->to($user->getEmail()) // Adresse de destination
             ->subject('Inscription réussie')
             ->text('Bienvenue sur notre site!'); // Corps du message
