@@ -299,7 +299,8 @@ section#my-drive {
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
-	align-items:center;
+	align-items:flex-start;
+	min-height:80vh;
 }
 
 #my-drive #dashboard {
@@ -346,7 +347,6 @@ td {
 		flex-direction:row;
 		width:100%;
 		justify-content:space-between;
-		align-items:normal;
 	}
 
 	#my-drive #dashboard {
