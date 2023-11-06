@@ -328,6 +328,17 @@ td {
 	display:block;
 }
 
+.number-stat {
+	color:#A5A6F6;
+	font-size:4rem;
+	font-family:"Nunito";
+	font-weight:600;
+}
+
+.stats {
+	padding:1rem;
+}
+
 @media all and (min-width:1024px) {
 	main {
 		display:flex;

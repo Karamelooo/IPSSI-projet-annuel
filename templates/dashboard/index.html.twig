@@ -19,161 +19,154 @@
 		<progress id="stockage-value" max="100" value="{{ percentageUsed }}">{{ percentageUsed }}</progress>
 		<span>{{ (app.user.storageUse)|number_format(3, ',', ' ') }}Go utilisés sur {{ (app.user.stockage) }}Go</span>
 	</div>
-
-    <!-- Flash Messages -->
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success mb-3">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger mb-3">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    {% for message in app.flashes('dropzone_success') %}
-        <div class="alert alert-success mb-3" role="alert" data-turbo-cache="false">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    <!-- File Upload Card -->
-        <input type="checkbox" id="show-upload" class="show-input">
-
-    <aside class="popup">
-        <div class="card">
-        <h2>
-            Télécharger un fichier
-        </h2>
-        <div>
-        <label class="label-upload" for="uploaded_file_file">Cliquez pour télécharger un fichier</label>
-            {{ form_start(form, {'attr': {'class': 'form'}}) }}
-            <div>
-                {{ form_label(form.file, 'Fichier', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="flex-row">
-                <label for="show-upload">
-		            <a class="button">Retour</a>
-                </label>
-                <button type="submit">Télécharger</button>
-            </div>
-            {{ form_end(form) }}
-        </div>
-    </aside>
-    {% if is_granted('ROLE_ADMIN') %}
-        <div>
-            <div>
+    <div>
+        {% if is_granted('ROLE_ADMIN') %}
+    <aside class="flex-row">
+        <div class="card stats">
+            <h3>
                 Nombre de fichier uploadés
-            </div>
-            <div>
+            </h3>
+            <div class="number-stat">
                     {{ totalFilesCount }}
                 
             </div>
         </div>
-        <div>
-            <div>
+        <div class="card stats">
+            <h3>
                 Nombre de fichier uploadés aujourd'hui
-            </div>
-            <div>
+            </h3>
+            <div class="number-stat">
                     {{ filesTodayCount }}
                 
             </div>
         </div>
-        <div>
-            <div>
+        <div class="card stats">
+            <h3>
                 Nombre de fichier moyen par client
-            </div>
-            <div>
+            </h3>
+            <div class="number-stat">
                     {{ averageFilesPerUser }}
                 
             </div>
         </div>
+    </aside>
     {% endif %}
-    <div id="table">
-        <h3>Vos fichiers :</h3>
-
-        <!-- Space Information -->
-       <div>
-            <p><strong>Espace restant:</strong> {{ ((app.user.stockage) - (app.user.storageUse))|number_format(3, ',', ' ') }} Go</p>
-        </div>
-
-
-
-
-   <table>
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">
-                <div class="row text-center">
-                    <div class="col-md-9 offset-md-0">
-                        <input type="text" class="form-control" id="fileSearchInput" placeholder="Tapez pour rechercher...">
-                    </div>
-                </div>
-            </th>
-            <th scope="col">
-               
-
-                <div class="row text-center">
-                    <div class="col-md-11 offset-md-0">
-                        <select class="form-control" id="fileTypeFilter">
-                        <!-- Les options seront ajoutées dynamiquement par JavaScript -->
-                        <option value="all">Les types &darr;</option>
-                    </select>                    
-                    </div>
-                </div>
-
-
-            </th>
-            <th scope="col" class="text-center sortable"  id="sizeFileColumn">Taille (Octets) &darr;</th>
-            <th scope="col" class="text-center sortable" id="dateAdded">Date d'ajout &darr;</th>
-            <th scope="col" class="text-center">Visualiser</th>
-            <th scope="col" class="text-center">Télécharger</th>
-            <th scope="col" class="text-center">Supprimer</th>
-            {% if is_granted('ROLE_ADMIN') %}
-                <th scope="col" class="text-center">Client</th>
-            {% endif %}
-
-        </tr>
-    </thead>
-    <tbody>
-        {% for file in files %}
-        <tr>
-            <th scope="row">{{ loop.index }}</th>
-            <td>{{ file.name }}</td>
-            <td class="text-center">
-                {% set fileExtension = file.name|split('.')|last|lower %}
-                {{ fileExtension }}
-            </td>
-            <td>{{ file.size }}</td>
-            <td>{{ file.date|date('d/m/Y H:i') }}</td>
-            <td class="text-center">
-                <a href="{{ path('app_dashboard_view', {'id': file.id}) }}" class="btn btn-info">Visualiser</a>
-            </td >
-            <td class="text-center">
-                <a href="{{ path('dashboard_download', {'id': file.id}) }}" class="btn btn-primary">Télécharger</a>
-            </td>
-            <td class="text-center">
-                <form action="{{ path('dashboard_delete', {'id': file.id}) }}" method="post" onsubmit="return confirmDelete();">
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </form>
-                <script>
-                    function confirmDelete() {
-                        return confirm("Êtes-vous sûr de vouloir supprimer ce fichier ?");
-                    }
-                </script>
-            </td>
-            {% if is_granted('ROLE_ADMIN') %}
-                <td>{{ file.owner }}</td>
-            {% endif %}
-
-        </tr>
+        <!-- Flash Messages -->
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mb-3">
+                {{ message }}
+            </div>
         {% endfor %}
-    </tbody>
-</table>
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger mb-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('dropzone_success') %}
+            <div class="alert alert-success mb-3" role="alert" data-turbo-cache="false">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!-- File Upload Card -->
+            <input type="checkbox" id="show-upload" class="show-input">
+
+        <aside class="popup">
+            <div class="card">
+            <h2>
+                Télécharger un fichier
+            </h2>
+            <div>
+            <label class="label-upload" for="uploaded_file_file">Cliquez pour télécharger un fichier</label>
+                {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                <div>
+                    {{ form_label(form.file, 'Fichier', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="flex-row">
+                    <label for="show-upload">
+                        <a class="button">Retour</a>
+                    </label>
+                    <button type="submit">Télécharger</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </aside>
+        <div id="table">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">
+                    <div class="row text-center">
+                        <div class="col-md-9 offset-md-0">
+                            <input type="text" class="form-control" id="fileSearchInput" placeholder="Tapez pour rechercher...">
+                        </div>
+                    </div>
+                </th>
+                <th scope="col">
+                
+
+                    <div class="row text-center">
+                        <div class="col-md-11 offset-md-0">
+                            <select class="form-control" id="fileTypeFilter">
+                            <!-- Les options seront ajoutées dynamiquement par JavaScript -->
+                            <option value="all">Les types &darr;</option>
+                        </select>                    
+                        </div>
+                    </div>
+
+
+                </th>
+                <th scope="col" class="text-center sortable"  id="sizeFileColumn">Taille (Octets) &darr;</th>
+                <th scope="col" class="text-center sortable" id="dateAdded">Date d'ajout &darr;</th>
+                <th scope="col" class="text-center">Visualiser</th>
+                <th scope="col" class="text-center">Télécharger</th>
+                <th scope="col" class="text-center">Supprimer</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th scope="col" class="text-center">Client</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ file.name }}</td>
+                <td class="text-center">
+                    {% set fileExtension = file.name|split('.')|last|lower %}
+                    {{ fileExtension }}
+                </td>
+                <td>{{ file.size }}</td>
+                <td>{{ file.date|date('d/m/Y H:i') }}</td>
+                <td class="text-center">
+                    <a href="{{ path('app_dashboard_view', {'id': file.id}) }}" class="btn btn-info">Visualiser</a>
+                </td >
+                <td class="text-center">
+                    <a href="{{ path('dashboard_download', {'id': file.id}) }}" class="btn btn-primary">Télécharger</a>
+                </td>
+                <td class="text-center">
+                    <form action="{{ path('dashboard_delete', {'id': file.id}) }}" method="post" onsubmit="return confirmDelete();">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                    <script>
+                        function confirmDelete() {
+                            return confirm("Êtes-vous sûr de vouloir supprimer ce fichier ?");
+                        }
+                    </script>
+                </td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>{{ file.owner }}</td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
 </div>
 
 
