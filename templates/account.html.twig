@@ -27,8 +27,13 @@
 </section>
 <section class="card">
 	<h2>Mon stockage</h2>
-	<progress id="stockage-value" max="100" value="10">10%</progress>
-	<span>2Go utilisés sur 20Go</span>
+	{% if app.user.storageUse > 0 %}
+		{% set percentageUsed = (app.user.storageUse / app.user.stockage) * 100 %}
+	{% else %}
+		{% set percentageUsed = 0 %}
+	{% endif %}
+		<progress id="stockage-value" max="100" value="{{ percentageUsed }}">{{ percentageUsed }}</progress>
+	<span>{{ (app.user.storageUse)|number_format(3, ',', ' ') }}Go utilisés sur {{ (app.user.stockage) }}Go</span>
 	<div class="flex-row">
 		<a class="button" href="{{ path('etape1') }}">Acheter</a>
 		<a class="button" href="{{ path('app_dashboard') }}">Voir mes fichiers</a>
