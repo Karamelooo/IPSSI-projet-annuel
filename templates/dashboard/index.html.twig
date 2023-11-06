@@ -4,8 +4,21 @@
 
 {% block body %}
 {% set GB_IN_BYTES = 1024 * 1024 * 1024 %}
+{% if app.user.storageUse > 0 %}
+    {% set percentageUsed = (app.user.storageUse / app.user.stockage) * 100 %}
+{% else %}
+    {% set percentageUsed = 0 %}
+{% endif %}
 
-<div class="container mt-5">
+<section id="my-drive">
+	<div id="dashboard">
+		<h1>Mon Drive</h1>
+        <label for="show-upload">
+		    <a class="button" id="add-file">+ Nouveau</a>
+        </label>
+		<progress id="stockage-value" max="100" value="{{ percentageUsed }}">{{ percentageUsed }}</progress>
+		<span>{{ (app.user.storageUse)|number_format(3, ',', ' ') }}Go utilisés sur {{ (app.user.stockage) }}Go</span>
+	</div>
 
     <!-- Flash Messages -->
     {% for message in app.flashes('success') %}
@@ -27,65 +40,70 @@
     {% endfor %}
 
     <!-- File Upload Card -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-info text-white">
+        <input type="checkbox" id="show-upload" class="show-input">
+
+    <aside class="popup">
+        <div class="card">
+        <h2>
             Télécharger un fichier
-        </div>
-        <div class="card-body">
+        </h2>
+        <div>
+        <label class="label-upload" for="uploaded_file_file">Cliquez pour télécharger un fichier</label>
             {{ form_start(form, {'attr': {'class': 'form'}}) }}
-            <div class="mb-3">
+            <div>
                 {{ form_label(form.file, 'Fichier', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Télécharger</button>
+            <div class="flex-row">
+                <label for="show-upload">
+		            <a class="button">Retour</a>
+                </label>
+                <button type="submit">Télécharger</button>
             </div>
             {{ form_end(form) }}
         </div>
-    </div>
+    </aside>
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
+        <div>
+            <div>
                 Nombre de fichier uploadés
             </div>
-            <div class="card-body">
+            <div>
                     {{ totalFilesCount }}
                 
             </div>
         </div>
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
+        <div>
+            <div>
                 Nombre de fichier uploadés aujourd'hui
             </div>
-            <div class="card-body">
+            <div>
                     {{ filesTodayCount }}
                 
             </div>
         </div>
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
+        <div>
+            <div>
                 Nombre de fichier moyen par client
             </div>
-            <div class="card-body">
+            <div>
                     {{ averageFilesPerUser }}
                 
             </div>
         </div>
     {% endif %}
-    <div class="container mt-5">
+    <div id="table">
         <h3>Vos fichiers :</h3>
 
         <!-- Space Information -->
-       <div class="d-flex justify-content-between mb-4 mt-4">
-            <p><strong>Espace utilisé:</strong> {{ (app.user.storageUse)|number_format(3, ',', ' ') }} Go</p>
-            <p><strong>Espace total disponible:</strong> {{ (app.user.stockage)|number_format(3, ',', ' ') }} Go</p>
+       <div>
             <p><strong>Espace restant:</strong> {{ ((app.user.stockage) - (app.user.storageUse))|number_format(3, ',', ' ') }} Go</p>
         </div>
 
 
 
 
-   <table class="table table-striped table-hover shadow-sm">
+   <table>
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -202,4 +220,5 @@
     });
 
 </script>
+</section>
 {% endblock %}

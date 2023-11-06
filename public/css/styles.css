@@ -14,6 +14,7 @@ a, a:hover, a:active, a:visited
 {
 	color:#4245F5;
 	text-decoration:none;
+	cursor:pointer;
 }
 
 h1,h2,h3,h4,h5,h6,.title {
@@ -144,6 +145,10 @@ header nav#nav-profile {
 	align-items:center;
 }
 
+.popup .card {
+	padding:3rem;
+}
+
 .show-input:checked ~ .popup {
 	display:flex;
 	z-index:1;
@@ -214,7 +219,12 @@ form input[type="submit"] {
 	margin-top:2rem;
 }
 
+.button {
+	display:block;
+}
+
 input[type="submit"], button, .button {
+	font-size:1.6rem;
 	border-radius:1rem;
 	font-weight:bold;
 	background:#4245F5;
@@ -228,7 +238,7 @@ input[type="submit"], button, .button {
 	outline:none;
 }
 
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover, button:hover, .button:hover {
 	background: white;
 	color:#4245F5 !important;
 	cursor:pointer;
@@ -246,13 +256,27 @@ form#payment-form div {
 	background-color:white;
 }
 
+.label-upload {
+	display:block;
+	width:40rem;
+	height:40rem;
+	border:1px solid #A5A6F6;
+	border-radius: 20px;
+	background-image:url("../images/svg/upload-file.svg");
+	background-position: center;
+    background-repeat: no-repeat;
+	text-align:center;
+	font-weight:400;
+}
+
 .danger {
 	background:#F26F6F;
 }
 
 .flex-row {
 	display:flex;
-	justify-content:space-between;
+	flex-direction:row;
+	justify-content:center;
 }
 
 #plan-price {
@@ -298,8 +322,9 @@ td {
 	padding:0.5rem;
 }
 
-button#add-file {
+#add-file {
 	padding:1rem 3rem;
+	display:block;
 }
 
 @media all and (min-width:1024px) {

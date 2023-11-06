@@ -17,7 +17,7 @@ class UploadedFileType extends AbstractType
         $builder
             ->add('file', DropzoneType::class, [
                 'attr' => [
-                    'placeholder' => 'Déposez vos fichiers ici ou cliquez',
+                    'placeholder' => '',
                     'class' => 'dropzone-media',
                 ],
                 'constraints' => [

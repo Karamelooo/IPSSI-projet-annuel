@@ -19,7 +19,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-.env
 config/bundles.php
 symfony.lock
-/migrations
+migrations
+public/uploads
